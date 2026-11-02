@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# Menu Diary 🍑
+### React Native 기반 개인 식단 기록 애플리케이션
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Menu Diary(Food Diary)는 일상에서 먹은 음식과 그때의 기분, 별점을 함께 기록하고 돌아볼 수 있는 **개인 모바일 앱 프로젝트**입니다. 사진이 포함된 식사 기록을 날짜별로 관리하고, 누적 기록을 차트로 확인할 수 있도록 구현했습니다.
 
-## Get started
+> **프로젝트 유형:** 개인 프로젝트  
+> **플랫폼:** 모바일 앱 (React Native / Expo)  
+> **개발 범위:** 화면 구성, 식사 기록 CRUD, 로컬 데이터 저장, 캘린더, 분석 화면
 
-1. Install dependencies
+## 주요 기능
 
-   ```bash
-   npm install
-   ```
+| 기능 | 설명 |
+| --- | --- |
+| 홈 대시보드 | 이번 주 기록 수, 자주 선택한 기분, 오늘의 기록, 별점 상위 3개 식사를 요약 |
+| 식사 기록 | 음식 이름, 날짜, 기분, 별점, 사진을 입력하여 기록 추가 |
+| 기록 상세 / 수정 / 삭제 | 개별 기록 확인, 정보 및 이미지 수정, 삭제 전 확인 |
+| 캘린더 | 기록이 있는 날짜 표시, 날짜별 식사 목록 조회 및 선택한 날짜에 기록 추가 |
+| 분석 대시보드 | 기분별 빈도, 별점 변화 추이, 요일별 기록 수를 차트로 시각화 |
+| 기분 필터 | 특정 기분의 식사 기록만 분석하도록 필터 적용 |
+| 메뉴 추천 | 저장된 기록 중 별점이 가장 높은 식사를 홈 화면에 표시 |
+| 로컬 저장 | AsyncStorage를 사용하여 기기에 식사 기록 저장 |
 
-2. Start the app
+메뉴 추천은 **기존 기록의 별점 기반**이며, AI 추천 기능은 포함하지 않습니다.
 
-   ```bash
-   npx expo start
-   ```
+## 기술 스택
 
-In the output, you'll find options to open the app in a
+- **Frontend:** React Native, JavaScript, Expo, Expo Router
+- **Storage:** @react-native-async-storage/async-storage
+- **Images:** expo-image-picker
+- **Calendar:** react-native-calendars
+- **Charts:** react-native-chart-kit
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 구현 내용
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Expo Router를 이용해 홈, 기록 추가, 상세, 수정, 캘린더, 분석 화면을 구성했습니다.
+- AsyncStorage에서 기록을 읽고 저장해 별도의 백엔드 없이 개인 식단 데이터를 관리합니다.
+- 사용자가 선택한 날짜에 식사를 추가하고, 캘린더에서 날짜별 기록을 확인할 수 있도록 연결했습니다.
+- 저장된 기분과 별점, 기록 날짜를 집계하여 그래프와 홈 요약을 표시합니다.
 
-## Get a fresh project
+## 프로젝트 구조
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```text
+app/
+├── _layout.tsx
+├── index.js         # 홈 / 요약
+├── add.js           # 기록 추가
+├── detail.js        # 기록 상세 / 삭제
+├── edit.js          # 기록 수정
+├── calendar.js      # 날짜별 기록
+└── analytics.js     # 기록 통계 / 차트
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 로컬 실행
 
-## Learn more
+```bash
+npm install
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Expo CLI에 표시되는 안내에 따라 호환되는 시뮬레이터나 개발 환경에서 실행할 수 있습니다. 실행 전 설치된 Expo SDK와 사용 중인 클라이언트 버전의 호환성을 확인해 주세요.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 스크린샷 및 데모
 
-## Join the community
+홈, 기록 추가, 캘린더, 분석 화면의 스크린샷과 짧은 시연 영상을 포트폴리오에 추가할 예정입니다.
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+이 프로젝트는 개인 학습 및 포트폴리오를 위한 모바일 앱이며, 앱 스토어에 배포된 서비스는 아닙니다.
